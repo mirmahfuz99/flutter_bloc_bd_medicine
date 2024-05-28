@@ -1,7 +1,9 @@
 import 'package:flutter_bloc_bd_medicine/features/bd_medicine/data/app_database.dart';
 import 'package:flutter_bloc_bd_medicine/features/bd_medicine/data/repository/repository_impl.dart';
 import 'package:flutter_bloc_bd_medicine/features/bd_medicine/domain/repository/repository.dart';
+import 'package:flutter_bloc_bd_medicine/features/bd_medicine/domain/usecases/get_company.dart';
 import 'package:flutter_bloc_bd_medicine/features/bd_medicine/domain/usecases/get_generic.dart';
+import 'package:flutter_bloc_bd_medicine/features/bd_medicine/domain/usecases/get_medicine.dart';
 import 'package:flutter_bloc_bd_medicine/features/bd_medicine/presentation/bloc/bd_medicine_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'dart:async';
@@ -26,8 +28,6 @@ Future<void> initializeDependencies() async {
     }
 
   final database = await $FloorAppDatabase.databaseBuilder(path).build();
-  print("cge");
-  print(await database.bdMedDao.getAllBrandDataDynamicQuery());
   // print(await database.bdMedDao.getAllCompanyData());
   sl.registerSingleton<AppDatabase>(database);
 
@@ -39,6 +39,8 @@ Future<void> initializeDependencies() async {
 
   //UseCases
   sl.registerSingleton<GetMedicineUseCase>(GetMedicineUseCase(sl()));
+  sl.registerSingleton<GetGenericUseCase>(GetGenericUseCase(sl()));
+  sl.registerSingleton<GetCompanyUseCase>(GetCompanyUseCase(sl()));
 
   //Blocs
   sl.registerFactory<BdMedicineBloc>(()=> BdMedicineBloc(sl()));

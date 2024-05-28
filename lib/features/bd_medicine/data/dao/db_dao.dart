@@ -23,6 +23,9 @@ abstract class BdMedDbDao {
   @Query('SELECT * FROM indication')
   Future<List<IndicationsEntity>> getAllIndications();
 
+  @Query('SELECT * FROM generic WHERE generic_id = :genericId')
+  Stream<MedGenericsEntity?> getGenericById(String genericId);
+
 
   @Query('SELECT * FROM brand WHERE generic_id = :genericId AND form LIKE :form AND strength LIKE :strength')
   Stream<List<MedicineEntity>> getSimilarMedicine(String genericId, {String form = '%%', String strength = '%%'});
@@ -31,7 +34,7 @@ abstract class BdMedDbDao {
   Stream<List<MedicineEntity>> getMedsByGenerics(String genericId);
 
   @Query('SELECT * FROM brand WHERE company_id = :companyId')
-  Stream<List<MedicineEntity>> getMedicinesCompanyId(String companyId);
+  Future<List<MedicineEntity>> getMedicinesCompanyId(String companyId);
 
   @Query('SELECT * FROM company_name WHERE company_id = :companyId')
   Stream<CompanyEntity?> getCompanyDetailsByCompanyId(String companyId);

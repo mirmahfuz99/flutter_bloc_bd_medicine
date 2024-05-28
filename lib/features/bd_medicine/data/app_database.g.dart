@@ -193,12 +193,29 @@ class _$BdMedDbDao extends BdMedDbDao {
   }
 
   @override
+  Stream<MedGenericsEntity?> getGenericById(String genericId) {
+    return _queryAdapter.queryStream(
+        'SELECT * FROM generic WHERE generic_id = ?1',
+        mapper: (Map<String, Object?> row) => MedGenericsEntity(
+            genericId: row['generic_id'] as String,
+            genericName: row['generic_name'] as String?,
+            precaution: row['precaution'] as String?,
+            indication: row['indication'] as String?,
+            contraIndication: row['contra_indication'] as String?,
+            dose: row['dose'] as String?,
+            sideEffect: row['side_effect'] as String?,
+            pregnancyCategoryId: row['pregnancy_category_id'] as String?,
+            modeOfAction: row['mode_of_action'] as String?,
+            interaction: row['interaction'] as String?),
+        arguments: [genericId],
+        queryableName: 'generic',
+        isView: false);
+  }
+
+  @override
   Stream<List<MedicineEntity>> getSimilarMedicine(
-    String genericId,
-      {
-    String form = '%%',
-    String strength = '%%',
-  }) {
+    String genericId, {String form = '%%', String strength = '%%'}
+  ) {
     return _queryAdapter.queryListStream(
         'SELECT * FROM brand WHERE generic_id = ?1 AND form LIKE ?2 AND strength LIKE ?3',
         mapper: (Map<String, Object?> row) => MedicineEntity(
@@ -234,9 +251,8 @@ class _$BdMedDbDao extends BdMedDbDao {
   }
 
   @override
-  Stream<List<MedicineEntity>> getMedicinesCompanyId(String companyId) {
-    return _queryAdapter.queryListStream(
-        'SELECT * FROM brand WHERE company_id = ?1',
+  Future<List<MedicineEntity>> getMedicinesCompanyId(String companyId) async {
+    return _queryAdapter.queryList('SELECT * FROM brand WHERE company_id = ?1',
         mapper: (Map<String, Object?> row) => MedicineEntity(
             row['brand_id'] as String,
             row['generic_id'] as String?,
@@ -246,9 +262,7 @@ class _$BdMedDbDao extends BdMedDbDao {
             row['strength'] as String?,
             row['price'] as String?,
             row['packsize'] as String?),
-        arguments: [companyId],
-        queryableName: 'brand',
-        isView: false);
+        arguments: [companyId]);
   }
 
   @override

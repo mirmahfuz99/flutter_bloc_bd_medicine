@@ -31,8 +31,8 @@ class _EmployeeListPageState extends State<EmployeeListPage> {
             return const Center(child: CircularProgressIndicator(),);
           }
           if(state is BDMedicineLoaded) {
-            print("g_length:${state.generic!.length}");
-            if (state.generic!.isEmpty) {
+            print("g_length:${state.medicines!.length}");
+            if (state.medicines!.isEmpty) {
               return const Center(
                   child: Text(
                     'No Data Found !',
@@ -44,12 +44,12 @@ class _EmployeeListPageState extends State<EmployeeListPage> {
                 const Divider(height: 0.5, color: Colors.black38),
                 physics: const ClampingScrollPhysics(),
                 shrinkWrap: true,
-                itemCount: state.generic!.length,
+                itemCount: state.medicines!.length,
                 itemBuilder: (context, index) {
                   return Container(
                     padding: const EdgeInsets.all(15),
                     child: Text(
-                        state.generic!.elementAt(index).name
+                        state.medicines!.elementAt(index).name
                     ),
                   );
                 });
