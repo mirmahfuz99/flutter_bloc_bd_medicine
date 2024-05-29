@@ -1,16 +1,16 @@
-# flutter_bloc_bd_medicine
+# flutter_bloc_bd_medicine 
 
-A new Flutter project.
+## App Preview
 
-## Getting Started
+- Bloc is used with clean architecture (data, domain & presentation)
+- Used get_it service locator
+- Used Floor, it provides SQLite abstraction similar to Room persistence
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<div class="row">
+  <div class="column">
+<img src="https://github.com/mirmahfuz99/flutter_bloc_bd_medicine/assets/20367660/231c8917-6ef1-44ca-9d79-b3d7f205e131" height="400"/>
+<img src="https://github.com/mirmahfuz99/flutter_bloc_bd_medicine/assets/20367660/97ba49e5-0b0b-4b63-a3cf-172ad3c3c3ce" height="400"/>
+<img src="https://github.com/mirmahfuz99/flutter_bloc_bd_medicine/assets/20367660/14d548a7-c774-4b08-b556-e96869a80b56" height="400"/>
+   </div>
+</div>
