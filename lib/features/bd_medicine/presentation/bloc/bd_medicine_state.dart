@@ -19,6 +19,5 @@ class BDMedicineLoading extends BdMedicineState {
 }
 
 class BDMedicineLoaded extends BdMedicineState {
-  const BDMedicineLoaded( List<Medicine> medicine) : super(medicines: medicine);
-  // const BDMedicineLoaded( List<Medicine> medicine, List<Generic> generic, List<Company> company) : super(generics: generic);
+  const BDMedicineLoaded( List<Medicine> medicines, List<Generic> generics, List<Company> companys) : super(generics: generics, medicines: medicines,companys: companys);
 }

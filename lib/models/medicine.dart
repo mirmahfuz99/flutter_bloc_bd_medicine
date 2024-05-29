@@ -8,7 +8,7 @@ class Medicine {
   final String? strength;
   final String? genericName;
   final String? companyName;
-  final Stream<Generic?>? generic;
+  final Stream<Generic>? generic;
   final Stream<List<Medicine>>? similarMedicines;
   final Stream<Company>? companyDetails;
 

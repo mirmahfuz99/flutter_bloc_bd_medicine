@@ -43,6 +43,6 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<GetCompanyUseCase>(GetCompanyUseCase(sl()));
 
   //Blocs
-  sl.registerFactory<BdMedicineBloc>(()=> BdMedicineBloc(sl()));
+  sl.registerFactory<BdMedicineBloc>(()=> BdMedicineBloc(sl(),sl(),sl()));
 
 }
