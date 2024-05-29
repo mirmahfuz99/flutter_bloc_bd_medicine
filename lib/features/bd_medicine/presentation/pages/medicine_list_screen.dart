@@ -5,6 +5,8 @@ import 'package:flutter_bloc_bd_medicine/features/bd_medicine/data/models/generi
 import 'package:flutter_bloc_bd_medicine/features/bd_medicine/data/models/medicine.dart';
 import 'package:flutter_bloc_bd_medicine/features/bd_medicine/presentation/bloc/bd_medicine_bloc.dart';
 import 'package:flutter_bloc_bd_medicine/features/bd_medicine/presentation/bloc/bd_medicine_state.dart';
+import 'package:flutter_bloc_bd_medicine/features/bd_medicine/presentation/widgets/companyStreamToText.dart';
+import 'package:flutter_bloc_bd_medicine/features/bd_medicine/presentation/widgets/genericStreamToText.dart';
 
 class MedicineListScreen extends StatelessWidget {
   const MedicineListScreen({super.key});
@@ -12,81 +14,54 @@ class MedicineListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocBuilder<BdMedicineBloc, BdMedicineState>(
-        builder: (context,state){
-          if(state is BDMedicineLoading){
-            return const Center(child: CircularProgressIndicator(),);
+      body: _buildBody(),
+    );
+  }
+
+  _buildBody(){
+    return BlocBuilder<BdMedicineBloc, BdMedicineState>(
+      builder: (context,state){
+        if(state is BDMedicineLoading){
+          return const Center(child: CircularProgressIndicator(),);
+        }
+        if(state is BDMedicineLoaded) {
+          if (state.medicines!.isEmpty) {
+            return const Center(
+                child: Text(
+                  'No Data Found !',
+                  style: TextStyle(color: Colors.black),
+                ));
           }
-          if(state is BDMedicineLoaded) {
-            if (state.medicines!.isEmpty) {
-              return const Center(
-                  child: Text(
-                    'No Data Found !',
-                    style: TextStyle(color: Colors.black),
-                  ));
-            }
-            return ListView.builder(itemBuilder: (context, index){
-              Medicine medicines = state.medicines!.elementAt(index);
+          return ListView.builder(itemBuilder: (context, index){
+            Medicine medicines = state.medicines!.elementAt(index);
 
 
-                return Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+            return Card(
+              color: Theme.of(context).textTheme.titleLarge!.color!.withOpacity(.2),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
                       children: [
-                        Row(
-                          children: [
-                            Text(medicines.name,style: Theme.of(context).textTheme.titleLarge,),
-                            const SizedBox(width: 10.0,),
-                            Text(medicines.type!),
-                          ],
-                        ),
-                        Text(medicines.strength!),
-                        const Divider(),
-                        companyStreamToText(medicines.companyDetails!),
-                        genericStreamToText(medicines.generic!)
-
-
+                        Text(medicines.name,style: Theme.of(context).textTheme.titleLarge,),
+                        const SizedBox(width: 10.0,),
+                        Text(medicines.type!,style: Theme.of(context).textTheme.titleMedium!),
                       ],
                     ),
-                  ),
-                );
-            }, itemCount: 50,
+                    Text(medicines.strength!,style: Theme.of(context).textTheme.titleMedium!),
+                    Divider(color: Theme.of(context).textTheme.titleLarge!.color!.withOpacity(.5)),
+                    companyStreamToText(medicines.companyDetails!),
+                    genericStreamToText(medicines.generic!,)
+                  ],
+                ),
+              ),
             );
-          }
-          return const SizedBox();
-        },
-      ),
-    );
-  }
-
-  Widget genericStreamToText(Stream<Generic> genericStream) {
-    return StreamBuilder<Generic>(
-      stream: genericStream,
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          return Text(snapshot.data!.name);
-        } else if (snapshot.hasError) {
-          return Text('Error: ${snapshot.error}');
-        } else {
-          return const Text('');
+          }, itemCount: 50,
+          );
         }
-      },
-    );
-  }
-
-  Widget companyStreamToText(Stream<Company> companyStream) {
-    return StreamBuilder<Company>(
-      stream: companyStream,
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          return Text(snapshot.data!.name,style: Theme.of(context).textTheme.bodyMedium,);
-        } else if (snapshot.hasError) {
-          return Text('Error: ${snapshot.error}');
-        } else {
-          return const Text('');
-        }
+        return const SizedBox();
       },
     );
   }

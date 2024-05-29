@@ -28,18 +28,18 @@ class _BDMedicineScreenState extends State<BDMedicineScreen> {
                   height: 45,
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.grey[300],
+                      color: Theme.of(context).textTheme.bodyMedium!.color!.withOpacity(.2),
                       borderRadius: BorderRadius.circular(25.0),
                     ),
                     child: TabBar(
                       indicatorSize: TabBarIndicatorSize.tab,
                       indicator: BoxDecoration(
-                        color: Colors.green[300],
+                        color: Theme.of(context).primaryColor,
                         borderRadius: BorderRadius.circular(25.0),
                       ),
                       indicatorPadding: EdgeInsets.zero, // Remove extra space around indicator
                       labelColor: Colors.white,
-                      unselectedLabelColor: Colors.black,
+                      unselectedLabelColor: Colors.white,
                       dividerColor: Colors.transparent,
                       tabs: const [
                         Tab(text: 'Medicine'),

@@ -10,40 +10,45 @@ class BrandListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocBuilder<BdMedicineBloc, BdMedicineState>(
-        builder: (context,state){
-          if(state is BDMedicineLoading){
-            return const Center(child: CircularProgressIndicator(),);
+      body: _buildBody(),
+    );
+  }
+
+  _buildBody(){
+    return BlocBuilder<BdMedicineBloc, BdMedicineState>(
+      builder: (context,state){
+        if(state is BDMedicineLoading){
+          return const Center(child: CircularProgressIndicator(),);
+        }
+        if(state is BDMedicineLoaded) {
+          if (state.companys!.isEmpty) {
+            return const Center(
+                child: Text(
+                  'No Data Found !',
+                  style: TextStyle(color: Colors.black),
+                ));
           }
-          if(state is BDMedicineLoaded) {
-            if (state.companys!.isEmpty) {
-              return const Center(
-                  child: Text(
-                    'No Data Found !',
-                    style: TextStyle(color: Colors.black),
-                  ));
-            }
-            return ListView.builder(
-              itemBuilder: (context, index){
-                Company company = state.companys!.elementAt(index);
-                return Card(
-                  elevation: .25,
-                  child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(company.name,style: Theme.of(context).textTheme.bodyLarge,),
-                      ],
-                    ),
+          return ListView.builder(
+            itemBuilder: (context, index){
+              Company company = state.companys!.elementAt(index);
+              return Card(
+                color: Theme.of(context).textTheme.titleLarge!.color!.withOpacity(.2),
+                elevation: .25,
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(company.name,style: Theme.of(context).textTheme.titleMedium!.copyWith(fontSize: 18),),
+                    ],
                   ),
-                );
-              }, itemCount: 50,
-            );
-          }
-          return const SizedBox();
-        },
-      ),
+                ),
+              );
+            }, itemCount: 50,
+          );
+        }
+        return const SizedBox();
+      },
     );
   }
 }
