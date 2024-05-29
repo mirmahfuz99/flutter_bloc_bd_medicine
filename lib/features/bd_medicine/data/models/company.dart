@@ -1,4 +1,4 @@
-import 'package:flutter_bloc_bd_medicine/models/medicine.dart';
+import 'package:flutter_bloc_bd_medicine/features/bd_medicine/data/models/medicine.dart';
 
 class Company {
   final String name;

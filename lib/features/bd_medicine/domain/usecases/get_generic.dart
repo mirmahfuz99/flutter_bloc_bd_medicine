@@ -1,6 +1,6 @@
 import 'package:flutter_bloc_bd_medicine/core/usecase/usecase.dart';
+import 'package:flutter_bloc_bd_medicine/features/bd_medicine/data/models/generic.dart';
 import 'package:flutter_bloc_bd_medicine/features/bd_medicine/domain/repository/repository.dart';
-import 'package:flutter_bloc_bd_medicine/models/generic.dart';
 
 class GetGenericUseCase implements UseCase<List<Generic>,void>{
 

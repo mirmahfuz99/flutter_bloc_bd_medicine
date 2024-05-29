@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_bd_medicine/config/routes/routes.dart';
 import 'package:flutter_bloc_bd_medicine/features/bd_medicine/presentation/bloc/bd_medicine_bloc.dart';
 import 'package:flutter_bloc_bd_medicine/features/bd_medicine/presentation/bloc/bd_medicine_event.dart';
-import 'package:flutter_bloc_bd_medicine/home_page.dart';
+import 'package:flutter_bloc_bd_medicine/features/bd_medicine/presentation/pages/home/bd_medicine_screen.dart';
 import 'package:flutter_bloc_bd_medicine/injection_container.dart';
-import 'package:flutter_bloc_bd_medicine/view/medicine_list.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,8 +21,8 @@ class MyApp extends StatelessWidget {
       create: (_) => sl<BdMedicineBloc>()..add(const GetGeneric()),
       child: const MaterialApp(
         title: 'Flutter Demo',
-        // home: EmployeeListPage(),
-        home: MyHomePage(),
+        onGenerateRoute: AppRoutes.onGenerateRoutes,
+        home: BDMedicineScreen(),
       ),
     );
   }

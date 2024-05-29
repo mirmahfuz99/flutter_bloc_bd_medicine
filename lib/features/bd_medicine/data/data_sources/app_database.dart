@@ -1,5 +1,5 @@
 import 'package:floor/floor.dart';
-import 'package:flutter_bloc_bd_medicine/features/bd_medicine/data/dao/db_dao.dart';
+import 'package:flutter_bloc_bd_medicine/features/bd_medicine/data/data_sources/dao/db_dao.dart';
 import 'package:flutter_bloc_bd_medicine/features/bd_medicine/data/entity/company_entity.dart';
 import 'package:flutter_bloc_bd_medicine/features/bd_medicine/data/entity/generic_indication_entity.dart';
 import 'package:flutter_bloc_bd_medicine/features/bd_medicine/data/entity/indications_entity.dart';

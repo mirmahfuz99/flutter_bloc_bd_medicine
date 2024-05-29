@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc_bd_medicine/features/bd_medicine/presentation/pages/brand_list_screen.dart';
+import 'package:flutter_bloc_bd_medicine/features/bd_medicine/presentation/pages/generic_list_screen.dart';
 import 'package:flutter_bloc_bd_medicine/features/bd_medicine/presentation/pages/medicine_list_screen.dart';
 
-import 'features/bd_medicine/presentation/pages/generic_list_screen.dart';
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+class BDMedicineScreen extends StatefulWidget {
+  const BDMedicineScreen({super.key});
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _BDMedicineScreenState createState() => _BDMedicineScreenState();
 }
-class _MyHomePageState extends State<MyHomePage> {
+class _BDMedicineScreenState extends State<BDMedicineScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
