@@ -5,6 +5,7 @@
 - Bloc is used with clean architecture (data, domain & presentation)
 - Used get_it service locator
 - Used Floor, it provides SQLite abstraction similar to Room persistence
+- Used Dio for network request
 
 
 <div class="row">
